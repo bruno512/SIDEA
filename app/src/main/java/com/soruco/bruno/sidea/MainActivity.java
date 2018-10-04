@@ -61,9 +61,11 @@ public class MainActivity extends AppCompatActivity
         // Fetch the specific Channel feed
         tsChannel.loadChannelFeed();
 
-        // Create a Calendar object dated 5 minutes ago
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.MINUTE, -5);
+        // Crear un objeto de calendario
+        Calendar calendar = Calendar.getInstance(); // fehca actual
+        calendar.add(Calendar.DAY_OF_YEAR, -1); // le resto dias
+        // Muestro en un toast el inicio de fecha del grafico
+        Toast.makeText(MainActivity.this, "Inicio: "+ calendar.getTime().toString(), Toast.LENGTH_LONG).show();
 
         // Configure LineChartView
         chartView = findViewById(R.id.chart);
@@ -74,11 +76,13 @@ public class MainActivity extends AppCompatActivity
 
         // Create a line chart from Field1 of ThinkSpeak Channel 195472
         tsChart = new ThingSpeakLineChart(195472, 3);
-        // Get 200 entries at maximum
-        tsChart.setNumberOfEntries(200);
+        // Get 200 entries at maximum - Obtenga 200 entradas como máximo
+        //tsChart.setNumberOfEntries(200);
         // Set value axis labels on 10-unit interval
+        // Establecer etiquetas de eje Y de valor en un intervalo de 1 unidades
         tsChart.setValueAxisLabelInterval(10);
         // Set date axis labels on 5-minute interval
+        // Establecer etiquetas de eje de fecha en intervalos de 5 minutos
         tsChart.setDateAxisLabelInterval(1);
         // Show the line as a cubic spline
         tsChart.useSpline(true);
@@ -86,8 +90,11 @@ public class MainActivity extends AppCompatActivity
         tsChart.setLineColor(Color.parseColor("#D32F2F"));
         // Set the axis color
         tsChart.setAxisColor(Color.parseColor("#455a64"));
-        // Set the starting date (5 minutes ago) for the default viewport of the chart
+        // Establezca la fecha de inicio (establecida en calendar) para la vista predeterminada del gráfico
         tsChart.setChartStartDate(calendar.getTime());
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        // Establezca la fecha de fin del grafico
+        tsChart.setChartEndDate(calendar.getTime());
         // Set listener for chart data update
         tsChart.setListener(new ThingSpeakLineChart.ChartDataUpdateListener() {
             @Override
@@ -104,23 +111,23 @@ public class MainActivity extends AppCompatActivity
         tsChart.loadChartData();
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -174,7 +181,7 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
