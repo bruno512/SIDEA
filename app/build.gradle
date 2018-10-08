@@ -15,6 +15,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        packagingOptions {
+            exclude 'META-INF/DEPENDENCIES'
+        }
+
     }
 }
 
@@ -30,4 +34,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    api 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.1.0'
+    api 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.7'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
 }

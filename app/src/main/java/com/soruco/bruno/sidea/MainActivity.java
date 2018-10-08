@@ -20,6 +20,7 @@ import com.macroyau.thingspeakandroid.ThingSpeakChannel;
 import com.macroyau.thingspeakandroid.ThingSpeakLineChart;
 import com.macroyau.thingspeakandroid.model.ChannelFeed;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Handler;
@@ -43,7 +44,9 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Inicio Servicio
+        startService(new Intent(this,ServiceMQTT.class));
+        //finish();
         // Connect to ThinkSpeak Channel 195472 de la cuenta nanocrax
         tsChannel = new ThingSpeakChannel(195472);
         // Set listener for Channel feed update events
