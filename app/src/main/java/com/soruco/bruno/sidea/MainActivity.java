@@ -80,13 +80,13 @@ public class MainActivity extends AppCompatActivity
         // Create a line chart from Field1 of ThinkSpeak Channel 195472
         tsChart = new ThingSpeakLineChart(195472, 3);
         // Get 200 entries at maximum - Obtenga 200 entradas como máximo
-        //tsChart.setNumberOfEntries(200);
+        tsChart.setNumberOfEntries(100);
         // Set value axis labels on 10-unit interval
-        // Establecer etiquetas de eje Y de valor en un intervalo de 1 unidades
-        tsChart.setValueAxisLabelInterval(10);
+        // Establecer etiquetas de eje Y, cada cuantas unidades me mostrara una etiqueta
+        tsChart.setValueAxisLabelInterval((float) 0.1);
         // Set date axis labels on 5-minute interval
-        // Establecer etiquetas de eje de fecha en intervalos de 5 minutos
-        tsChart.setDateAxisLabelInterval(1);
+        // Establecer etiquetas de eje X, cada cuantas unidades me mostrara una etiqueta
+        tsChart.setDateAxisLabelInterval(10);
         // Show the line as a cubic spline
         tsChart.useSpline(true);
         // Set the line color

@@ -15,7 +15,6 @@ public class Create extends AppCompatActivity {
     EditText et_nombre, et_apellido, et_tel;
 
     @Override
-    // hola
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
