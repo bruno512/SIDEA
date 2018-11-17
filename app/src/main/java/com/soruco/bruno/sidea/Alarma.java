@@ -20,11 +20,11 @@ public class Alarma extends AppCompatActivity {
     AudioManager audioManager;
     MediaPlayer mediaPlayer;
     Button btn_apagado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarma);
-        dato = findViewById(R.id.txt_dato);
         btn_apagado = (Button) findViewById(R.id.btn_apagado);
         stopService(new Intent(this,ServiceMQTT.class));
         encender();

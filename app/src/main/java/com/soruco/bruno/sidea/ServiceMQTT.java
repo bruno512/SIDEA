@@ -87,12 +87,15 @@ public class ServiceMQTT extends Service {
                     nm.notify(idUnica,notificacion.build());
 
                     numeroCelular="3875744803";//datos.get(0);
+                    numeroCelular2="3884307596";
+                    //enviarMensaje("hOLA","3875744803");
                     nombrePersona="Gabriel Roldan";
                     mensaje = nombrePersona+" y/o su familia estan en riesgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
-                    ArrayList<String> datos = Numeros();
-                    enviarMensaje(mensaje,datos.get(0));
+                    //ArrayList<String> datos = Numeros();
+                    //enviarMensaje(mensaje,datos.get(0));
+                    //enviarMensaje(mensaje,datos.get(1));
                     //Manda un mensaje luego de 10 segundos si no contesta
-                    startService(new Intent(thisContext, ServicioTimer.class));
+                    //startService(new Intent(thisContext, ServicioTimer.class));
                     /*new CountDownTimer(10000, 1000) {
                         public void onTick(long millisUntilFinished) {
                             //Se puede colocar un mensaje cada segundo

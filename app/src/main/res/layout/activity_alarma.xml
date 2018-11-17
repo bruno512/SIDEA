@@ -19,17 +19,11 @@
         android:text="Apagar Alarma"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="24sp" />
-    <TextView
-        android:id="@+id/txt_dato"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="189dp"
-        android:text="Recibido" />
+
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="290dp"
         android:layout_height="290dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/alarma" />
+
 </RelativeLayout>
