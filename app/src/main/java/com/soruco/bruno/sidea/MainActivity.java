@@ -44,11 +44,29 @@ public class MainActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // fieldId 3 le corresponde a MQ5
+        GraficoThingSpeak(195472, 3);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public  void GraficoThingSpeak(int channelId, int fieldId){
         //Inicio Servicio
         startService(new Intent(this,ServiceMQTT.class));
         //finish();
         // Connect to ThinkSpeak Channel 195472 de la cuenta nanocrax
-        tsChannel = new ThingSpeakChannel(195472);
+        tsChannel = new ThingSpeakChannel(channelId);
         // Set listener for Channel feed update events
         tsChannel.setChannelFeedUpdateListener(new ThingSpeakChannel.ChannelFeedUpdateListener() {
             @Override
@@ -78,7 +96,7 @@ public class MainActivity extends AppCompatActivity
         chartView.setValueSelectionEnabled(true);
 
         // Create a line chart from Field1 of ThinkSpeak Channel 195472
-        tsChart = new ThingSpeakLineChart(195472, 3);
+        tsChart = new ThingSpeakLineChart(channelId, fieldId);
         // Get 200 entries at maximum - Obtenga 200 entradas como máximo
         tsChart.setNumberOfEntries(100);
         // Set value axis labels on 10-unit interval
@@ -112,22 +130,7 @@ public class MainActivity extends AppCompatActivity
         });
         // Load chart data asynchronously
         tsChart.loadChartData();
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
