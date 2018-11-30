@@ -8,6 +8,7 @@
     <string name="action_settings">Settings</string>
     <string name="contactos_utiles">Contactos Utiles</string>
     <string name="contactos">Contactos</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 
     <string name="co1">Muchas intoxicaciones por MONÓXIDO DE CARBONO parecen intoxicaciones alimentarias, gripes o accidentes cerebrovasculares.
 Se debe sospechar una intoxicación con Monóxido de carbono cuando una o varias personas al mismo tiempo, que estuvieron en un
