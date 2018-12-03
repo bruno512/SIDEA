@@ -1,5 +1,6 @@
 package com.soruco.bruno.sidea;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         ThingSpeakChannel tsChannel;
         ThingSpeakLineChart tsChart;
         final LineChartView chartView;
-        // Connect to ThinkSpeak Channel 195472 de la cuenta nanocrax
+        // Connect to ThinkSpeak Channel channelId de la cuenta nanocrax
         tsChannel = new ThingSpeakChannel(channelId);
         // Set listener for Channel feed update events
         tsChannel.setChannelFeedUpdateListener(new ThingSpeakChannel.ChannelFeedUpdateListener() {
@@ -104,8 +105,9 @@ public class MainActivity extends AppCompatActivity
         tsChannel.loadChannelFeed();
 
         // Crear un objeto de calendario
-        Calendar calendar = Calendar.getInstance(); // fehca actual
-        calendar.add(Calendar.DAY_OF_YEAR, -1); // le resto dias
+        Calendar calendar = Calendar.getInstance(); // fecha actual
+//        calendar.add(Calendar.DAY_OF_YEAR, -1); // le resto dias
+        calendar.add(Calendar.MINUTE, -5);
         // Muestro en un toast el inicio de fecha del grafico
 //        Toast.makeText(MainActivity.this, "Inicio: "+ calendar.getTime().toString(), Toast.LENGTH_LONG).show();
 
@@ -116,16 +118,18 @@ public class MainActivity extends AppCompatActivity
         chartView.setScrollEnabled(true);
         chartView.setValueSelectionEnabled(true);
 
-        // Create a line chart from Field1 of ThinkSpeak Channel 195472
+        // Create a line chart from Field1 of ThinkSpeak Channel channelId
         tsChart = new ThingSpeakLineChart(channelId, fieldId);
         // Get 200 entries at maximum - Obtenga 200 entradas como máximo
-        tsChart.setNumberOfEntries(100);
+        tsChart.setNumberOfEntries(200);
         // Set value axis labels on 10-unit interval
         // Establecer etiquetas de eje Y, cada cuantas unidades me mostrara una etiqueta
-        tsChart.setValueAxisLabelInterval((float) 0.1);
+        //tsChart.setValueAxisLabelInterval((float) 0.1);
+        tsChart.setValueAxisLabelInterval(5);
         // Set date axis labels on 5-minute interval
         // Establecer etiquetas de eje X, cada cuantas unidades me mostrara una etiqueta
-        tsChart.setDateAxisLabelInterval(10);
+        //tsChart.setDateAxisLabelInterval(15);
+        tsChart.setDateAxisLabelInterval(1);
         // Show the line as a cubic spline
         tsChart.useSpline(true);
         // Set the line color
@@ -134,10 +138,12 @@ public class MainActivity extends AppCompatActivity
         tsChart.setAxisColor(Color.parseColor("#455a64"));
         // Establezca la fecha de inicio (establecida en calendar) para la vista predeterminada del gráfico
         tsChart.setChartStartDate(calendar.getTime());
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        //calendar.add(Calendar.DAY_OF_YEAR, 1);
         // Establezca la fecha de fin del grafico
-        tsChart.setChartEndDate(calendar.getTime());
+        //tsChart.setChartEndDate(calendar.getTime());
         // Set listener for chart data update
+        tsChart.setXAxisName("Tiempo");
+        tsChart.setYAxisName("PPM");
         tsChart.setListener(new ThingSpeakLineChart.ChartDataUpdateListener() {
             @Override
             public void onChartDataUpdated(long channelId, int fieldId, String title, LineChartData lineChartData, Viewport maxViewport, Viewport initialViewport) {
@@ -214,7 +220,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * Aqui construyo los fragmentos para cada sensor
+     * Aqui construyo los fragmentos para cada vista del Viewpager para cada sensor
      */
     public static class FragmentMQ2 extends Fragment {
         /**
@@ -281,7 +287,6 @@ public class MainActivity extends AppCompatActivity
             return rootView;
         }
     }
-
 
     public static class FragmentMQ7 extends Fragment {
         /**
