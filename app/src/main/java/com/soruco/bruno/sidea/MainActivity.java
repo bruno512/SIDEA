@@ -1,11 +1,8 @@
 package com.soruco.bruno.sidea;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -21,18 +18,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.macroyau.thingspeakandroid.ThingSpeakChannel;
 import com.macroyau.thingspeakandroid.ThingSpeakLineChart;
 import com.macroyau.thingspeakandroid.model.ChannelFeed;
-
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.logging.Handler;
-
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;

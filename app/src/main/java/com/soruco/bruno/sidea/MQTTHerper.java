@@ -82,7 +82,7 @@ public class MQTTHerper {
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Log.w("Mqtt", "Failed to connect to: " + serverUri + exception.toString());
+                    Log.w("Mqtt", "Conexion fallida a: " + serverUri + exception.toString());
                 }
             });
 
@@ -98,12 +98,12 @@ public class MQTTHerper {
             mqttAndroidClient.subscribe(subscriptionTopic, 0, null, new IMqttActionListener() {
                 @Override
                 public void onSuccess(IMqttToken asyncActionToken) {
-                    Log.w("Mqtt","Subscribed!");
+                    Log.w("Mqtt","Suscripto!");
                 }
 
                 @Override
                 public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                    Log.w("Mqtt", "Subscribed fail!");
+                    Log.w("Mqtt", "Suscripcion Fallida!");
                 }
             });
 

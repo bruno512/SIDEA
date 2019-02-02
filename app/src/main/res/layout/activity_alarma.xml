@@ -1,23 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/background_light"
     tools:context=".Alarma">
+
     <Button
         android:id="@+id/btn_apagado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="544dp"
         android:layout_marginBottom="68dp"
         android:width="250dp"
         android:height="100dp"
-        android:background="@android:color/darker_gray"
+        android:background="@drawable/side_nav_bar"
         android:onClick="apagar"
-        android:text="Apagar Alarma"
-        android:textColor="@android:color/holo_red_dark"
+        android:text="Desact. Alarma"
+        android:textColor="@color/colorAccent"
         android:textSize="24sp" />
 
     <pl.droidsonroids.gif.GifImageView
@@ -25,5 +28,42 @@
         android:layout_height="290dp"
         android:layout_centerHorizontal="true"
         android:src="@drawable/alarma" />
+
+    <TextView
+        android:id="@+id/textViewDescripcion"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginBottom="399dp"
+        android:autoText="true"
+        android:text="Se enviará el mensaje de texto en:"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeMinTextSize="18sp" />
+
+    <TextView
+        android:id="@+id/textViewTemporizador"
+        android:layout_width="96dp"
+        android:layout_height="46dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="157dp"
+        android:layout_marginTop="335dp"
+        android:layout_marginEnd="158dp"
+        android:layout_marginBottom="350dp"
+        android:text="00:00"
+        android:textColor="@color/colorPrimary"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>
