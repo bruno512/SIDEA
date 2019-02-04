@@ -82,22 +82,22 @@ public class ServiceMQTT extends Service {
                     Toast.makeText(thisContext, "Llego: " + mqttMessage.toString(), Toast.LENGTH_SHORT).show();
 
                     //Creo la notificacion
-                    notificacion.setSmallIcon(R.mipmap.ic_launcher);
+                    /*notificacion.setSmallIcon(R.mipmap.ic_launcher);
                     notificacion.setTicker("Nueva Alarma");
                     notificacion.setPriority(Notification.PRIORITY_HIGH);
                     notificacion.setWhen(System.currentTimeMillis());
                     notificacion.setContentTitle("PELIGRO GASES TOXICOS");
-                    notificacion.setContentText("Presione para eliminar alarma");
+                    notificacion.setContentText("Presione para eliminar alarma");*/
 
                     //Ejecuto la alarma para que suene aunque se lance la notificacion
                     Intent intent = new Intent(ServiceMQTT.this, Alarma.class);
                     startActivity(intent);
 
                     //Espero a que el usuario toque la notificacion y luego se abre la alarma
-                    PendingIntent pendingIntent = PendingIntent.getActivity(thisContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    /*PendingIntent pendingIntent = PendingIntent.getActivity(thisContext,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
                     notificacion.setContentIntent(pendingIntent);
                     NotificationManager nm = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                    nm.notify(idUnica,notificacion.build());
+                    nm.notify(idUnica,notificacion.build());*/
 
                 }
                 Toast.makeText(thisContext, "Llego: " + mqttMessage.toString(), Toast.LENGTH_SHORT).show();

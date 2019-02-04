@@ -1,9 +1,11 @@
 package com.soruco.bruno.sidea;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.CountDownTimer;
@@ -14,8 +16,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -25,30 +27,41 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.ArrayList;
 
 public class Alarma extends AppCompatActivity {
-    CountDownTimer timer;
+    long tiempo=10000; //Tiempo inicial del temporizador
+    private CountDownTimer timer;
+    TextView numTemp,descTemp;
     Context thisContext=this;
     AudioManager audioManager;
     MediaPlayer mediaPlayer;
     Button btn_apagado;
 
+
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarma);
         btn_apagado = findViewById(R.id.btn_apagado);
+        numTemp=findViewById(R.id.textViewTemporizador);
+        descTemp=findViewById(R.id.textViewDescripcion);
         //stopService(new Intent(this,ServiceMQTT.class));
         encender();
     }
     public void encender(){
         //Iniciamos temporizador
-         timer = new CountDownTimer(10000, 1000) {
+         timer = new CountDownTimer(tiempo, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                Toast.makeText(thisContext, "Tiempo: "+(millisUntilFinished/1000), Toast.LENGTH_SHORT).show();
+                tiempo=tiempo-1000;
+                actualizarTiempo();
             }
 
+            @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
+                descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
+                descTemp.setTextColor(Color.parseColor("#F7A232"));
+                numTemp.setVisibility(View.INVISIBLE);
                 Toast.makeText(thisContext, "Teoricamente se envio el mensaje", Toast.LENGTH_SHORT).show();
                 String numeroCelular = "3875744803";
                 //datos.get(0);
@@ -68,7 +81,7 @@ public class Alarma extends AppCompatActivity {
                 // Toast.makeText(thisContext, "Dato "+i+datos.get(i), Toast.LENGTH_SHORT).show();
                 //}
 
-                enviarMensaje(mensaje,"3875744803");
+                //enviarMensaje(mensaje,"3875744803");
                 //enviarMensaje(mensaje2,numeroCelular2);
                 //enviarMensaje(mensaje3,numeroCelular3);
                 //.... Se agregan las necesarias
@@ -88,26 +101,16 @@ public class Alarma extends AppCompatActivity {
         //Aumentamos el volumen en 4 seg
         //esperarysonar(4000);
     }
-    public void esperarysonar(int milisegundos) {
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,10, 0);
-            }
-        }, milisegundos);
-    }
-    public void apagar(View view) {
-        //Cancelamos el temporizador
-        timer.cancel();
-        //Apagamos sonido
-        mediaPlayer.stop();
-        mediaPlayer.release();
-        //Apagamos vibracion
-        Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        vi.cancel();
-        //startService(new Intent(this,ServiceMQTT.class));
-        //stopService(new Intent(this,ServiceMQTT.class));
-        //this.finish();
+
+    public void actualizarTiempo(){
+        int minutos = (int) tiempo / 60000;
+        int segundos = (int) tiempo % 60000 / 1000;
+        String tiempotxt = "";
+        if (minutos<60) tiempotxt += "0";
+        tiempotxt += minutos + ":";
+        if (segundos<10) tiempotxt += "0";
+            tiempotxt += segundos;
+        numTemp.setText(tiempotxt);
     }
 
     public void enviarMensaje(String men,String nroCel){
@@ -152,5 +155,29 @@ public class Alarma extends AppCompatActivity {
         }
         return datos;
     }
+
+    public void apagar(View view) {
+        //Cancelamos el temporizador
+        timer.cancel();
+        //Apagamos sonido
+        mediaPlayer.stop();
+        mediaPlayer.release();
+        //Apagamos vibracion
+        Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vi.cancel();
+        //startService(new Intent(this,ServiceMQTT.class));
+        //stopService(new Intent(this,ServiceMQTT.class));
+        this.finish();
+    }
+
+    public void esperarysonar(int milisegundos) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,10, 0);
+            }
+        }, milisegundos);
+    }
+
 
 }

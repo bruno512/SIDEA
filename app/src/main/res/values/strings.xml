@@ -38,6 +38,9 @@ su hogar, cierre las puertas.
 • Comprobar que los ambientes tengan ventilación hacia el exterior. Ventilar toda la casa una vez al día, aunque haga frío.
 • Dejar siempre una puerta o ventana entreabierta, tanto de día como de noche, y aún cuando haga frío.</string>
     <string name="Tiempo">Date</string>
+    <string name="Descripcion">Se enviaran los mensajes de alerta en:</string>
+    <string name="Temporizadortxt">00:00</string>
+    <string name="Titulobtn">Desact. Alarma</string>
 
 
 </resources>
