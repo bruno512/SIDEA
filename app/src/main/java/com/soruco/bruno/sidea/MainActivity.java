@@ -95,8 +95,8 @@ public class MainActivity extends AppCompatActivity
 
         // Crear un objeto de calendario
         Calendar calendar = Calendar.getInstance(); // fecha actual
-//        calendar.add(Calendar.DAY_OF_YEAR, -1); // le resto dias
-        calendar.add(Calendar.MINUTE, -5);
+        calendar.add(Calendar.HOUR, -4); // le resto horas
+//        calendar.add(Calendar.MINUTE, -5);
         // Muestro en un toast el inicio de fecha del grafico
 //        Toast.makeText(MainActivity.this, "Inicio: "+ calendar.getTime().toString(), Toast.LENGTH_LONG).show();
 
@@ -109,12 +109,12 @@ public class MainActivity extends AppCompatActivity
 
         // Create a line chart from Field1 of ThinkSpeak Channel channelId
         tsChart = new ThingSpeakLineChart(channelId, fieldId);
-        // Get 200 entries at maximum - Obtenga 200 entradas como máximo
-        tsChart.setNumberOfEntries(200);
+        // Get 200 entries at maximum - Obtenga 15 entradas como máximo
+        tsChart.setNumberOfEntries(15);
         // Set value axis labels on 10-unit interval
         // Establecer etiquetas de eje Y, cada cuantas unidades me mostrara una etiqueta
         //tsChart.setValueAxisLabelInterval((float) 0.1);
-        tsChart.setValueAxisLabelInterval(5);
+        tsChart.setValueAxisLabelInterval(1);
         // Set date axis labels on 5-minute interval
         // Establecer etiquetas de eje X, cada cuantas unidades me mostrara una etiqueta
         //tsChart.setDateAxisLabelInterval(15);
@@ -127,9 +127,9 @@ public class MainActivity extends AppCompatActivity
         tsChart.setAxisColor(Color.parseColor("#455a64"));
         // Establezca la fecha de inicio (establecida en calendar) para la vista predeterminada del gráfico
         tsChart.setChartStartDate(calendar.getTime());
-        //calendar.add(Calendar.DAY_OF_YEAR, 1);
+//        calendar.add(Calendar.DAY_OF_YEAR, 1);
         // Establezca la fecha de fin del grafico
-        //tsChart.setChartEndDate(calendar.getTime());
+//        tsChart.setChartEndDate(calendar.getTime());
         // Set listener for chart data update
         tsChart.setXAxisName("Tiempo");
         tsChart.setYAxisName("PPM");
@@ -348,11 +348,11 @@ public class MainActivity extends AppCompatActivity
         public  CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return "MQ 2";
+                    return "Gráfico MQ 2";
                 case 1:
-                    return "MQ 5";
+                    return "Gráfico MQ 5";
                 case 2:
-                    return "MQ 7";
+                    return "Gráfico MQ 7";
             }
             return null;
         }
