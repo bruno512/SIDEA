@@ -238,8 +238,8 @@ public class MainActivity extends AppCompatActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_mq2, container, false);
 
-            // fieldId 2 le corresponde a MQ2
-            GraficoThingSpeak(195472, 2, rootView);
+            // fieldId 2 le corresponde a MQ4
+            GraficoThingSpeak(195472, 1, rootView);
             return rootView;
         }
     }
@@ -272,7 +272,7 @@ public class MainActivity extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.fragment_mq5, container, false);
 
             // fieldId 3 le corresponde a MQ5
-            GraficoThingSpeak(195472, 3, rootView);
+            GraficoThingSpeak(195472, 2, rootView);
             return rootView;
         }
     }
@@ -305,7 +305,7 @@ public class MainActivity extends AppCompatActivity
             View rootView = inflater.inflate(R.layout.fragment_mq7, container, false);
 
             // fieldId 4 le corresponde a MQ7
-            GraficoThingSpeak(195472, 4, rootView);
+            GraficoThingSpeak(195472, 3, rootView);
             return rootView;
         }
     }
