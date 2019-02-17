@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Vibrator;
@@ -28,6 +30,7 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.ArrayList;
 
 public class Alarma extends AppCompatActivity {
+
     long tiempo=10000; //Tiempo inicial del temporizador
     private CountDownTimer timer;
     TextView numTemp,descTemp;
@@ -60,8 +63,6 @@ public class Alarma extends AppCompatActivity {
             @SuppressLint("SetTextI18n")
             @Override
             public void onFinish() {
-                descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
-                descTemp.setTextColor(Color.parseColor("#F7A232"));
                 numTemp.setVisibility(View.INVISIBLE);
                 //numeroCelular2="3884307596"; nilda
                 //numeroCelular2="3885828838"; bruno
@@ -73,10 +74,48 @@ public class Alarma extends AppCompatActivity {
                 ArrayList<String> datos = Numeros();
                 if (datos.isEmpty()){
                     descTemp.setText("La lista de contactos de emergencia esta vacia, no se envio ningun mensaje de alerta");
-                    enviarMensaje(mensaje,"3875744803");
+                    descTemp.setTextColor(Color.parseColor("#FF0000"));
                 }else{
-                    for (int i=0;i<datos.size();i++){
-                        enviarMensajeSMS(mensaje,datos.get(i));
+                    //
+                    ConnectivityManager cm;
+                    NetworkInfo ni;
+                    cm = (ConnectivityManager) thisContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                    ni = cm.getActiveNetworkInfo();
+                    boolean tipoConexion1 = false;
+                    boolean tipoConexion2 = false;
+
+                    if (ni != null) {
+                        ConnectivityManager connManager1 = (ConnectivityManager) thisContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo mWifi = connManager1.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+                        ConnectivityManager connManager2 = (ConnectivityManager) thisContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                        NetworkInfo mMobile = connManager2.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+                        if (mWifi.isConnected()) {
+                            tipoConexion1 = true;
+                        }
+                        if (mMobile.isConnected()) {
+                            tipoConexion2 = true;
+                        }
+
+                        if (tipoConexion1 || tipoConexion2) {
+                            Toast.makeText(thisContext, "Hay conexion a internet", Toast.LENGTH_SHORT).show();
+                            for (int i=0;i<datos.size();i++){
+                                enviarMensaje(mensaje,datos.get(i));
+                            }
+                            descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
+                            descTemp.setTextColor(Color.parseColor("#F7A232"));
+
+                        }
+                    }
+                    else {
+                        Toast.makeText(thisContext, "No hay conexion a internet", Toast.LENGTH_SHORT).show();
+                        for (int i=0;i<datos.size();i++){
+                            enviarMensajeSMS(mensaje,datos.get(i));
+                        }
+                        descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
+                        descTemp.setTextColor(Color.parseColor("#F7A232"));
+
                     }
                 }
             }
@@ -179,6 +218,5 @@ public class Alarma extends AppCompatActivity {
             }
         }, milisegundos);
     }
-
 
 }
