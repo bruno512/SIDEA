@@ -32,7 +32,6 @@ public class ServiceMQTT extends Service {
     Context thisContext=this;
     MQTTHerper mqttHelper;
     NotificationCompat.Builder notificacion;
-    String nombrePersona,mensaje,numeroCelular,nombrePersona2,mensaje2,numeroCelular2,nombrePersona3,mensaje3,numeroCelular3;
     private static final int idUnica=333;
 
     @Nullable
@@ -48,7 +47,6 @@ public class ServiceMQTT extends Service {
         notificacion.setAutoCancel(true);
         notificacion.setTimeoutAfter(3000);
         Toast.makeText(this, "Servicio creado", Toast.LENGTH_LONG).show();
-        //startMqtt();
     }
 
     @Override

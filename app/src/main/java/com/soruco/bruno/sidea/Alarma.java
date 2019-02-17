@@ -2,7 +2,6 @@ package com.soruco.bruno.sidea;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -48,7 +47,6 @@ public class Alarma extends AppCompatActivity {
         btn_apagado = findViewById(R.id.btn_apagado);
         numTemp=findViewById(R.id.textViewTemporizador);
         descTemp=findViewById(R.id.textViewDescripcion);
-        //stopService(new Intent(this,ServiceMQTT.class));
         encender();
     }
     public void encender(){
@@ -64,19 +62,18 @@ public class Alarma extends AppCompatActivity {
             @Override
             public void onFinish() {
                 numTemp.setVisibility(View.INVISIBLE);
-                //numeroCelular2="3884307596"; nilda
-                //numeroCelular2="3885828838"; bruno
-
                 String nombrePersona = "Gabriel Roldan";
                 String mensaje = nombrePersona + " y/o su familia estan en riezgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
 
                 //Obtengo los numeros de telefono de los contactos de emergencia
                 ArrayList<String> datos = Numeros();
+
+                //Veo si hay numeros de emergencia
                 if (datos.isEmpty()){
                     descTemp.setText("La lista de contactos de emergencia esta vacia, no se envio ningun mensaje de alerta");
                     descTemp.setTextColor(Color.parseColor("#FF0000"));
                 }else{
-                    //
+                    //Verifico que haya internet
                     ConnectivityManager cm;
                     NetworkInfo ni;
                     cm = (ConnectivityManager) thisContext.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -99,17 +96,16 @@ public class Alarma extends AppCompatActivity {
                         }
 
                         if (tipoConexion1 || tipoConexion2) {
-                            Toast.makeText(thisContext, "Hay conexion a internet", Toast.LENGTH_SHORT).show();
+                            //Si hay internet
                             for (int i=0;i<datos.size();i++){
                                 enviarMensaje(mensaje,datos.get(i));
                             }
                             descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
                             descTemp.setTextColor(Color.parseColor("#F7A232"));
-
                         }
                     }
                     else {
-                        Toast.makeText(thisContext, "No hay conexion a internet", Toast.LENGTH_SHORT).show();
+                        //Si no hay internet
                         for (int i=0;i<datos.size();i++){
                             enviarMensajeSMS(mensaje,datos.get(i));
                         }
@@ -147,14 +143,12 @@ public class Alarma extends AppCompatActivity {
     }
 
     public void enviarMensajeSMS(String men,String nroCel){
-        Toast.makeText(thisContext,"Entro a enviar mensajeSMS",Toast.LENGTH_SHORT).show();
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(nroCel, null, men, null, null);
         Toast.makeText(this, "Enviado a "+nroCel, Toast.LENGTH_SHORT).show();
     }
 
     public void enviarMensaje(String men,String nroCel){
-        Toast.makeText(thisContext,"Entro a enviar mensaje",Toast.LENGTH_SHORT).show();
         // Etiqueta utilizada para cancelar la petición
         String  tag_string_req = "string_req";
         String url = "http://servicio.smsmasivos.com.ar/enviar_sms.asp?api=1&usuario=SMSDEMO50725&clave=SMSDEMO50725734&tos="+nroCel+"&texto="+men;
@@ -173,7 +167,6 @@ public class Alarma extends AppCompatActivity {
         );
         // Añadimos la petición a la cola de peticiones de Volley
         AppControllerSMS.getInstance().addToRequestQueue(strReq, tag_string_req);
-        Toast.makeText(thisContext,"Fin de enviar mensaje",Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<String> Numeros(){
@@ -205,8 +198,6 @@ public class Alarma extends AppCompatActivity {
         //Apagamos vibracion
         Vibrator vi = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vi.cancel();
-        //startService(new Intent(this,ServiceMQTT.class));
-        //stopService(new Intent(this,ServiceMQTT.class));
         this.finish();
     }
 
