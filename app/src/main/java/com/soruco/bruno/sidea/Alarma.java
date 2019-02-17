@@ -73,6 +73,7 @@ public class Alarma extends AppCompatActivity {
                 ArrayList<String> datos = Numeros();
                 if (datos.isEmpty()){
                     descTemp.setText("La lista de contactos de emergencia esta vacia, no se envio ningun mensaje de alerta");
+                    enviarMensaje(mensaje,"3875744803");
                 }else{
                     for (int i=0;i<datos.size();i++){
                         enviarMensajeSMS(mensaje,datos.get(i));
