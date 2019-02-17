@@ -63,36 +63,21 @@ public class Alarma extends AppCompatActivity {
                 descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
                 descTemp.setTextColor(Color.parseColor("#F7A232"));
                 numTemp.setVisibility(View.INVISIBLE);
-                //Toast.makeText(thisContext, "Teoricamente se envio el mensaje", Toast.LENGTH_SHORT).show();
-                //String numeroCelular = "3885828838";
-                //datos.get(0);
-                //numeroCelular2="3884307596";
+                //numeroCelular2="3884307596"; nilda
+                //numeroCelular2="3885828838"; bruno
 
                 String nombrePersona = "Gabriel Roldan";
                 String mensaje = nombrePersona + " y/o su familia estan en riezgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
 
-
-                //enviarMensaje(mensaje,datos.get(0));
-                //enviarMensaje(mensaje,datos.get(1));
-                //enviarMensaje("hola3","3875744803");
-
                 //Obtengo los numeros de telefono de los contactos de emergencia
                 ArrayList<String> datos = Numeros();
                 if (datos.isEmpty()){
-                    Toast.makeText(thisContext, "Esta vacia", Toast.LENGTH_SHORT).show();
+                    descTemp.setText("La lista de contactos de emergencia esta vacia, no se envio ningun mensaje de alerta");
                 }else{
                     for (int i=0;i<datos.size();i++){
-                        //enviarMensajeSMS(mensaje,datos.get(i));
-                        Toast.makeText(thisContext, "Dato "+i+datos.get(i), Toast.LENGTH_SHORT).show();
+                        enviarMensajeSMS(mensaje,datos.get(i));
                     }
                 }
-
-
-
-                //enviarMensaje(mensaje,"3875744803");
-                //enviarMensaje(mensaje2,numeroCelular2);
-                //enviarMensaje(mensaje3,numeroCelular3);
-                //.... Se agregan las necesarias
             }
         };
         timer.start();
@@ -125,7 +110,7 @@ public class Alarma extends AppCompatActivity {
         Toast.makeText(thisContext,"Entro a enviar mensajeSMS",Toast.LENGTH_SHORT).show();
         SmsManager sms = SmsManager.getDefault();
         sms.sendTextMessage(nroCel, null, men, null, null);
-        Toast.makeText(this, "Enviado", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Enviado a "+nroCel, Toast.LENGTH_SHORT).show();
     }
 
     public void enviarMensaje(String men,String nroCel){

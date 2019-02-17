@@ -57,9 +57,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Ingrese número"
-        android:inputType="phone"
+        android:inputType="number"
         android:lines="1"
-        android:maxLength="14"/>
+        android:maxLength="14" />
 
     <Button
         android:id="@+id/bt_modificar"

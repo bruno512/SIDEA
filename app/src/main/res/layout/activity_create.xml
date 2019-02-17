@@ -59,10 +59,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Ingrese número"
-        android:inputType="phone"
+        android:hint="Ingrese número sin 0 ni 15"
+        android:inputType="number"
         android:lines="1"
-        android:maxLength="14"/>
+        android:maxLength="14" />
 
     <Button
         android:id="@+id/bt_guardar"
