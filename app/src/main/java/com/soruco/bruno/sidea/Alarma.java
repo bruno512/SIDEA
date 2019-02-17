@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -62,24 +63,31 @@ public class Alarma extends AppCompatActivity {
                 descTemp.setText("Se enviaron mensajes de texto alerta a los contactos de emergencia");
                 descTemp.setTextColor(Color.parseColor("#F7A232"));
                 numTemp.setVisibility(View.INVISIBLE);
-                Toast.makeText(thisContext, "Teoricamente se envio el mensaje", Toast.LENGTH_SHORT).show();
-                String numeroCelular = "3875744803";
+                //Toast.makeText(thisContext, "Teoricamente se envio el mensaje", Toast.LENGTH_SHORT).show();
+                //String numeroCelular = "3885828838";
                 //datos.get(0);
                 //numeroCelular2="3884307596";
 
-                String nombrePersona="Gabriel Roldan";
-                String mensaje = nombrePersona+" y/o su familia estan en riezgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
-                //ArrayList<String> datos = Numeros();
+                String nombrePersona = "Gabriel Roldan";
+                String mensaje = nombrePersona + " y/o su familia estan en riezgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
+
+
                 //enviarMensaje(mensaje,datos.get(0));
                 //enviarMensaje(mensaje,datos.get(1));
                 //enviarMensaje("hola3","3875744803");
 
-                //Manda un mensaje luego de 10 segundos si no contesta
                 //Obtengo los numeros de telefono de los contactos de emergencia
-                //ArrayList<String> datos = Numeros();
-                //for (int i=0;i<datos.size();i++){
-                // Toast.makeText(thisContext, "Dato "+i+datos.get(i), Toast.LENGTH_SHORT).show();
-                //}
+                ArrayList<String> datos = Numeros();
+                if (datos.isEmpty()){
+                    Toast.makeText(thisContext, "Esta vacia", Toast.LENGTH_SHORT).show();
+                }else{
+                    for (int i=0;i<datos.size();i++){
+                        //enviarMensajeSMS(mensaje,datos.get(i));
+                        Toast.makeText(thisContext, "Dato "+i+datos.get(i), Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+
 
                 //enviarMensaje(mensaje,"3875744803");
                 //enviarMensaje(mensaje2,numeroCelular2);
@@ -111,6 +119,13 @@ public class Alarma extends AppCompatActivity {
         if (segundos<10) tiempotxt += "0";
             tiempotxt += segundos;
         numTemp.setText(tiempotxt);
+    }
+
+    public void enviarMensajeSMS(String men,String nroCel){
+        Toast.makeText(thisContext,"Entro a enviar mensajeSMS",Toast.LENGTH_SHORT).show();
+        SmsManager sms = SmsManager.getDefault();
+        sms.sendTextMessage(nroCel, null, men, null, null);
+        Toast.makeText(this, "Enviado", Toast.LENGTH_SHORT).show();
     }
 
     public void enviarMensaje(String men,String nroCel){
