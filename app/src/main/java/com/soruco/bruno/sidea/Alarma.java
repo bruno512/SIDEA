@@ -63,7 +63,7 @@ public class Alarma extends AppCompatActivity {
             public void onFinish() {
                 numTemp.setVisibility(View.INVISIBLE);
                 String nombrePersona = "Gabriel Roldan";
-                String mensaje = nombrePersona + " y/o su familia estan en riezgo por gases toxicos presentes en su hogar, por favor contactase lo antes posible con el o alguien cercano";
+                String mensaje = nombrePersona + " y/o su familia estan en riesgo por gases toxicos presentes en su hogar, por favor contáctase lo antes posible con el o alguien cercano";
 
                 //Obtengo los numeros de telefono de los contactos de emergencia
                 ArrayList<String> datos = Numeros();
