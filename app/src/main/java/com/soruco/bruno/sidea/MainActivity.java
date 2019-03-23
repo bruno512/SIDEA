@@ -238,7 +238,7 @@ public class MainActivity extends AppCompatActivity
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_mq2, container, false);
 
-            // fieldId 2 le corresponde a MQ4
+            // fieldId 1 le corresponde a MQ4
             GraficoThingSpeak(195472, 1, rootView);
             return rootView;
         }
@@ -348,7 +348,7 @@ public class MainActivity extends AppCompatActivity
         public  CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return "Gráfico MQ 2";
+                    return "Gráfico MQ 4";
                 case 1:
                     return "Gráfico MQ 5";
                 case 2:
