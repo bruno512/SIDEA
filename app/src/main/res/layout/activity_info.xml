@@ -42,11 +42,31 @@
                 />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/imageViewCab"
                 android:layout_width="174dp"
                 android:layout_height="138dp"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/co"/>
+                app:srcCompat="@drawable/cabeza"/>
+            <ImageView
+                android:id="@+id/imageViewMus"
+                android:layout_width="174dp"
+                android:layout_height="138dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/muscular"/>
+
+            <ImageView
+                android:id="@+id/imageViewNau"
+                android:layout_width="174dp"
+                android:layout_height="138dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/nauseas"/>
+
+            <ImageView
+                android:id="@+id/imageViewSom"
+                android:layout_width="174dp"
+                android:layout_height="138dp"
+                android:layout_gravity="center_horizontal"
+                app:srcCompat="@drawable/somnolencia"/>
 
             <TextView
                 android:id="@+id/textView3"

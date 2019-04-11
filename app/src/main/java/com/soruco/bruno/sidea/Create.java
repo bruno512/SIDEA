@@ -47,7 +47,7 @@ public class Create extends AppCompatActivity {
                 // Se hace la inserccion del registro
                 long i = db.insert("Contactos",null, registroNuevo);
                 if (i>0){
-                    Toast.makeText(this,"Registro insertado",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Contacto agregado",Toast.LENGTH_SHORT).show();
                 }
             }
             //Vuelvo hacia atras

@@ -3,40 +3,37 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Sistema de Detecciòn y Alerta</string>
-    <string name="nav_header_subtitle">Version 1.0</string>
+    <string name="nav_header_subtitle">Version 1.18</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="contactos_utiles">Contactos Utiles</string>
     <string name="contactos">Contactos</string>
     <string name="section_format">Hello World from section: %1$d</string>
-
     <string name="co1">Muchas intoxicaciones por MONÓXIDO DE CARBONO parecen intoxicaciones alimentarias, gripes o accidentes cerebrovasculares.
 Se debe sospechar una intoxicación con Monóxido de carbono cuando una o varias personas al mismo tiempo, que estuvieron en un
-ambiente cerrado, presentan:
-Dolor de cabeza
-Mareos
-Debilidad
-Náuseas
-Vómitos
-Pérdida del conocimiento Convulsiones
-Dolor de pecho Palpitaciones
+ambiente cerrado, presentan: \n
+Dolor de cabeza,
+Mareos,
+Debilidad,
+Náuseas y
+Vómitos\n
 </string>
-    <string name="co2">• Retirar a la persona del lugar contaminado con el gas.
-• Hacerle respirar aire fresco.
-• Llevarlo al Hospital o al Centro asistencial más próximo, aunque haya recuperado el conocimiento
+    <string name="co2">\n• Retirar a la persona del lugar contaminado con el gas. \n
+• Hacerle respirar aire fresco. \n
+• Llevarlo al Hospital o al Centro asistencial más próximo, aunque haya recuperado el conocimiento \n
         • Llame a un Centro de Intoxicaciones mas cercano.</string>
     <string name="co3">Para prevenir la intoxicación por Monóxido de Carbono es elemental el control de las instalaciones y el buen
-funcionamiento de artefactos así como es importante mantener los ambientes bien ventilados
-• Si se encienden brasas o llamas de cualquier tipo, no dormir con éstas encendidas y apagarlas fuera de la casa.
-• No usar el horno u hornallas de la cocina para calefaccionar el ambiente.
-• No mantener recipientes con agua sobre la estufa, cocina u otra fuente de calor.
-• El calefón no debe estar en el baño, ni en espacios cerrados o mal ventilados.
+funcionamiento de artefactos así como es importante mantener los ambientes bien ventilados \n\n
+• Si se encienden brasas o llamas de cualquier tipo, no dormir con éstas encendidas y apagarlas fuera de la casa.\n
+• No usar el horno u hornallas de la cocina para calefaccionar el ambiente.\n
+• No mantener recipientes con agua sobre la estufa, cocina u otra fuente de calor.\n
+• El calefón no debe estar en el baño, ni en espacios cerrados o mal ventilados.\n
 • No encender motores a combustión (grupos electrógenos, motosierra, etc.) en ambientes cerrados, en sótanos o
-garajes.
+garajes.\n
 • No mantener el motor del auto en funcionamiento cuando el garaje está cerrado. Si su garaje está conectado al resto de
-su hogar, cierre las puertas.
-• Comprobar que los ambientes tengan ventilación hacia el exterior. Ventilar toda la casa una vez al día, aunque haga frío.
-• Dejar siempre una puerta o ventana entreabierta, tanto de día como de noche, y aún cuando haga frío.</string>
+su hogar, cierre las puertas.\n
+• Comprobar que los ambientes tengan ventilación hacia el exterior. Ventilar toda la casa una vez al día, aunque haga frío.\n
+• Dejar siempre una puerta o ventana entreabierta, tanto de día como de noche, y aún cuando haga frío.\n</string>
     <string name="Tiempo">Date</string>
     <string name="Descripcion">Se enviaran los mensajes de alerta en:</string>
     <string name="Temporizadortxt">00:00</string>

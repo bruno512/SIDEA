@@ -348,11 +348,11 @@ public class MainActivity extends AppCompatActivity
         public  CharSequence getPageTitle(int position){
             switch (position){
                 case 0:
-                    return "Gas Natural";
+                    return "GAS NATURAL";
                 case 1:
-                    return "Gas Envasado";
+                    return "GAS ENVASADO";
                 case 2:
-                    return "Monóxido  de Carbono";
+                    return "MONOXIDO DE CARBONO";
             }
             return null;
         }

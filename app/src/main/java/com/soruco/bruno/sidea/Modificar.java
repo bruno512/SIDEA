@@ -88,7 +88,7 @@ public class Modificar extends AppCompatActivity {
                 // Se hace la modificacion del registro
                 long i = db.update("Contactos",registroModificado,"Id="+Id,null);
                 if (i>0){
-                    Toast.makeText(this,"Registro modificado",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Contacto modificado",Toast.LENGTH_SHORT).show();
                 }
             }
         }catch (Exception ex){
@@ -104,7 +104,7 @@ public class Modificar extends AppCompatActivity {
                 // Se hace la eliminacion del registro
                 long i = db.delete("Contactos","Id="+Id,null);
                 if (i>0){
-                    Toast.makeText(this,"Registro eliminado",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Contacto eliminado",Toast.LENGTH_SHORT).show();
                 }
             }
         }catch (Exception ex){
