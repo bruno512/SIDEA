@@ -46,19 +46,19 @@ public class ServiceMQTT extends Service {
         notificacion = new NotificationCompat.Builder(this);
         notificacion.setAutoCancel(true);
         notificacion.setTimeoutAfter(3000);
-        Toast.makeText(this, "Servicio creado", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Servicio creado", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "Servicio destruido", Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "Servicio destruido", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flag, int idProcess) {
         startMqtt();
-        Toast.makeText(this, "Se ejecuto onStartComand", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Se ejecuto onStartComand", Toast.LENGTH_SHORT).show();
         return START_STICKY;
     }
 
@@ -98,7 +98,7 @@ public class ServiceMQTT extends Service {
                     nm.notify(idUnica,notificacion.build());*/
 
                 }
-                Toast.makeText(thisContext, "Llego: " + mqttMessage.toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(thisContext, "Llego: " + mqttMessage.toString(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void deliveryComplete(IMqttDeliveryToken iMqttDeliveryToken) {
